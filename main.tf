@@ -136,8 +136,9 @@ resource "kubernetes_deployment" "cattle_cluster_agent" {
   spec {
     selector {
       match_labels = {
-        "app.kubernetes.io/name"    = "cattle-cluster-agent"
-        "app.kubernetes.io/part-of" = "rancher"
+        "app" = "cattle-cluster-agent"
+        #"app.kubernetes.io/name"    = "cattle-cluster-agent"
+        #"app.kubernetes.io/part-of" = "rancher"
       }
     }
 
@@ -146,6 +147,7 @@ resource "kubernetes_deployment" "cattle_cluster_agent" {
         annotations = var.k8s_cluster_agent_pod_annotations
         labels = merge(
           {
+            "app"                       = "cattle-cluster-agent"
             "app.kubernetes.io/name"    = "cattle-cluster-agent"
             "app.kubernetes.io/part-of" = "rancher"
             "app.kubernetes.io/version" = "v${local.rancher_agent_version}"
@@ -253,8 +255,9 @@ resource "kubernetes_daemonset" "cattle_node_agent" {
   spec {
     selector {
       match_labels = {
-        "app.kubernetes.io/name"    = "cattle-node-agent"
-        "app.kubernetes.io/part-of" = "rancher"
+        "app" = "cattle-node-agent"
+        #"app.kubernetes.io/name"    = "cattle-node-agent"
+        #"app.kubernetes.io/part-of" = "rancher"
       }
     }
 
@@ -263,6 +266,7 @@ resource "kubernetes_daemonset" "cattle_node_agent" {
         annotations = var.k8s_node_agent_pod_annotations
         labels = merge(
           {
+            "app"                       = "cattle-node-agent"
             "app.kubernetes.io/name"    = "cattle-node-agent"
             "app.kubernetes.io/part-of" = "rancher"
             "app.kubernetes.io/version" = "v${local.rancher_agent_version}"
