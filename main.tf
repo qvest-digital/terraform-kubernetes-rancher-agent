@@ -116,12 +116,6 @@ resource "kubernetes_secret" "cattle_credentials" {
 }
 
 resource "kubernetes_deployment" "cattle_cluster_agent" {
-  lifecycle {
-    ignore_changes = [
-      spec[0].template[0].spec[0].container[0].image,
-      spec[0].template[0].spec[0].volume[0].secret[0].secret_name,
-    ]
-  }
 
   metadata {
     name      = "cattle-cluster-agent"
@@ -239,12 +233,6 @@ resource "kubernetes_deployment" "cattle_cluster_agent" {
 }
 
 resource "kubernetes_daemonset" "cattle_node_agent" {
-  lifecycle {
-    ignore_changes = [
-      spec[0].template[0].spec[0].container[0].image,
-      spec[0].template[0].spec[0].volume[4].secret[0].secret_name,
-    ]
-  }
 
   metadata {
     name      = "cattle-node-agent"
