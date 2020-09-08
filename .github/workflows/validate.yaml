@@ -9,9 +9,9 @@ on:
 jobs:
   build:
     name: Validate Terraform Module
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     container:
-      image: docker.io/hashicorp/terraform:0.12.24
+      image: docker.io/hashicorp/terraform:0.13.2
     steps:
     - name: git checkout
       uses: actions/checkout@v2
